@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:netfilx/ui/login.dart';
 
 class Welcomepage extends StatefulWidget {
   const Welcomepage({super.key});
@@ -21,7 +22,7 @@ class _WelcomepageState extends State<Welcomepage> {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(
-                        'lib/assets/images/Rectangle 64.png',
+                        'assets/image/Rectangle 64.png',
                       ),
                       fit: BoxFit.cover)),
             ),
@@ -66,22 +67,26 @@ class _WelcomepageState extends State<Welcomepage> {
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     SizedBox(
-                      height: 70,
+                      height: 70.h,
                     ),
                     GestureDetector(
-                      
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Login(),
+                            ));
+                      },
                       child: Container(
-                        height: 70,
-                        width: 350,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.red),
+                        height: 60.h,
+                        width: 450.w,
+                        decoration: BoxDecoration(color: Colors.red),
                         alignment: Alignment.center,
                         child: Text(
                           "GET STARTED",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
