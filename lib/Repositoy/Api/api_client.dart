@@ -1,17 +1,17 @@
 import 'dart:convert';
-import 'package:http/http.dart';
 import 'dart:developer';
+
+import 'package:http/http.dart';
+
 import 'api_exception.dart';
 
 class ApiClient {
   Future<Response> invokeAPI(String path, String method, Object? body) async {
-    Map<String, String> headerparams = {};
     Response response;
 
     String url = path;
     print(url);
 
-    final nullableheaderparams = (headerparams.isEmpty) ? null : headerparams;
     print(body);
 
     switch (method) {
@@ -26,7 +26,7 @@ class ApiClient {
             headers: {'content-type': 'appLication/json'}, body: body);
         break;
 
-      case 'Delete':
+      case 'DELETE':
         response = await delete(Uri.parse(url), headers: {}, body: body);
         break;
       case 'POST_':
@@ -34,16 +34,15 @@ class ApiClient {
             headers: {'content-Type': 'application/json'}, body: body);
 
         break;
-      case 'GET_':
-        response = await post(Uri.parse(url), headers: {});
+   
 
-        break;
+   
 
       case 'GET':
         response = await get(Uri.parse(url), headers: {
           'X-RapidAPI-Key':
               'ca62211e4cmshcd22b3f6295b989p18b2ccjsn35cbabc6e276',
-          'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com',
+          'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com' ,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         });
@@ -57,13 +56,13 @@ class ApiClient {
           body: body,
         );
         break;
-      case "PATCH1":
-        response = await patch(
-          Uri.parse(url),
-          headers: {},
-          body: body,
-        );
-        break;
+      // case "PATCH1":
+      //   response = await patch(
+      //     Uri.parse(url),
+      //     headers: {},
+      //     body: body,
+      //   );
+      //   break;
 
       default:
         response = await get(Uri.parse(url), headers: {

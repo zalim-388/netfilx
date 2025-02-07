@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netfilx/ui/bottomnav.dart';
 
 class SelectPage extends StatefulWidget {
   const SelectPage({super.key});
@@ -8,9 +9,9 @@ class SelectPage extends StatefulWidget {
 }
 
 class _SelectPageState extends State<SelectPage> {
-  List<Map<String, String>> Movie = [
+  List<Map<String, String>> Movies = [
     {
-      "Image": " assets/image/n2 4.png",
+      "Image": "assets/image/n2 4.png",
       "name": "Drashti",
     },
     {
@@ -36,6 +37,18 @@ class _SelectPageState extends State<SelectPage> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        leading: TextButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BottomNav(),
+                  ));
+            },
+            child: Text(
+              'Skip',
+              style: TextStyle(color: Colors.white,fontSize: 20),
+            )),
         backgroundColor: Colors.black,
         title: Padding(
           padding: const EdgeInsets.only(left: 70),
@@ -62,7 +75,44 @@ class _SelectPageState extends State<SelectPage> {
               child: Text(
             'Who’s Watching?',
             style: TextStyle(color: Colors.white, fontSize: 25),
-          ))
+          )),
+          SizedBox(
+            height: 25,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: GridView.builder(
+                itemCount: Movies.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  mainAxisExtent: 180,
+                ),
+                itemBuilder: (context, index) {
+                  final movie = Movies[index];
+
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 120,
+                        child: Image.asset(
+                          movie['Image'] ?? '',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        movie['name'] ?? '',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          )
         ],
       ),
     );

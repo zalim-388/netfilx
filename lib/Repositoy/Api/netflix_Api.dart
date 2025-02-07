@@ -12,7 +12,7 @@ Future<List<NetflixModel>>getmovie()async{
 
   var body={};
 
-  Response respose =await _apiClient.invokeAPI(path,'Get',body);
+  Response respose =await _apiClient.invokeAPI(path,'GET',body);
 
 
 List<dynamic> jsonrespose=jsonDecode(respose.body);
