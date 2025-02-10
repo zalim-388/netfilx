@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netfilx/ui/bottomnav.dart';
+import 'package:netfilx/ui/home.dart';
 
 class SelectPage extends StatefulWidget {
   const SelectPage({super.key});
@@ -47,7 +48,7 @@ class _SelectPageState extends State<SelectPage> {
             },
             child: Text(
               'Skip',
-              style: TextStyle(color: Colors.white,fontSize: 20),
+              style: TextStyle(color: Colors.white, fontSize: 20),
             )),
         backgroundColor: Colors.black,
         title: Padding(
@@ -83,6 +84,7 @@ class _SelectPageState extends State<SelectPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: GridView.builder(
+                
                 itemCount: Movies.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -91,15 +93,30 @@ class _SelectPageState extends State<SelectPage> {
                   mainAxisExtent: 180,
                 ),
                 itemBuilder: (context, index) {
+
                   final movie = Movies[index];
 
                   return Column(
                     children: [
                       SizedBox(
                         height: 120,
-                        child: Image.asset(
-                          movie['Image'] ?? '',
-                          fit: BoxFit.cover,
+                        child: GestureDetector(
+                          onTap: () {
+                            
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Home(
+
+                                    image: movie['image'] ?? '',
+                                    name: movie['name'] ?? '',
+                                  ),
+                                ));
+                          },
+                          child: Image.asset(
+                            movie['Image'] ?? '',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 5),
